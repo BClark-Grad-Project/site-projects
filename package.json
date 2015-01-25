@@ -1,0 +1,14 @@
+{
+  "name": "site-projects",
+  "author": "Brandon L. Clark",
+  "description": "Used to manage program development for the site-template package.",
+  "version": "0.1.0",
+  "license": "MIT",
+  "main": "server.js",
+  "private": true,
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+  }
+}
