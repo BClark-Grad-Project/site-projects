@@ -34,7 +34,7 @@ module.exports = function(project, cb){
 		    var span = e.getTime() - s.getTime();
 		    var span_each = span/3;
 			var iter_last = s;
-			var projectObj = {iteration:[]};
+			var projectObj = {detail:{iteration:[]},iteration:[]};
 			var today = new Date();
 			for(var i = 0; i < 3; i++){
 				var status;

@@ -5,7 +5,6 @@ module.exports = function(createObj, cb){
     var start  = createObj.start  ? createObj.start  : undefined;
     var stop   = createObj.stop   ? createObj.stop   : undefined;
     var status = createObj.status ? createObj.status : undefined;
-    var sdl    = createObj.sdl    ? createObj.sdl    : undefined;
     var task   = createObj.task   ? createObj.task   : undefined;
 	
     var Obj = new Iteration({
@@ -13,7 +12,6 @@ module.exports = function(createObj, cb){
 	    start:       start,
 	    stop:        stop,
 	    status:      status,
-	    sdl:         sdl,
 	    task:        task
 	});	
 	
