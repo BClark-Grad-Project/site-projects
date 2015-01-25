@@ -29,9 +29,11 @@ module.exports.story     = Story;
 module.exports = function(project, cb){
 	if(project){
 		if(project.detail){
-		    var span = new Date(project.detail.stop).getTime() - new Date(project.detail.start).getTime();
+			var s = new Date(project.detail.start);
+			var e = new Date(project.detail.stop);
+		    var span = e.getTime() - s.getTime();
 		    var span_each = span/3;
-			var iter_last = new Date(project.detail.start).getTime;
+			var iter_last = s.getTime;
 			var projectObj = {};
 			var today = new Date();
 			for(var i = 0; i < 3; i++){
