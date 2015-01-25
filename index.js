@@ -11,8 +11,8 @@ var R = require('./read');
 var U = require('./update');
 var D = require('./delete');
 
-module.exports.get  = get;
-module.exports.post = post;
+//module.exports.get  = get;
+//module.exports.post = post;
 
 module.exports.create = function(Obj, cb){
 	console.log('site-projects', Obj);
