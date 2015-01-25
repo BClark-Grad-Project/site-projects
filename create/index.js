@@ -59,8 +59,9 @@ module.exports = function(project, cb){
 					projectObj.detail.iteration.push(iter.id);
 					projectObj.iteration.push(iter);
 					j++;
-					if(i == 2){
+					if(j === 2){
 						project.detail.iteration = projectObj.detail.iteration;
+						console.log(project);
 						SDL(project.detail, function(err, sdl){
 							if(err){return cb(err, null);}
 							return cb(null, projectObj);
