@@ -4,7 +4,8 @@ var storySchema = mongo.Schema({
 	name:        {type: String},
 	description: {type: String},
 	weight:      {type: Number},
-	status:      {type: String}
+	status:      {type: String},
+	active:      {type: Boolean, 'default':true}
 });
 
 storySchema.methods.getData = function(){
@@ -13,7 +14,8 @@ storySchema.methods.getData = function(){
 	    name:        this.name,
 	    description: this.description,
 	    weight:      this.weight,
-	    status:      this.status
+	    status:      this.status,
+	    active:      this.active
 	};
 };
 

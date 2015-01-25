@@ -6,7 +6,8 @@ var iterationSchema = mongo.Schema({
     	stop:    {type: Date},
     	status:  {type: String},
     	task:   [{type: mongo.Schema.Types.ObjectId,
-	              ref: 'Task'}]
+	              ref: 'Task'}],
+	   	active:  {type: Boolean, 'default':true}
 });
 
 iterationSchema.methods.getData = function(){
@@ -16,7 +17,8 @@ iterationSchema.methods.getData = function(){
 	    start:       this.start,
 	    stop:        this.stop,
 	    status:      this.status,
-	    task:        this.task
+	    task:        this.task,
+	    active:      this.active
 	};
 };
 
