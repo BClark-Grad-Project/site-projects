@@ -1,6 +1,6 @@
 var mongo = require('mongoose');
 
-var Schema = mongo.Schema({
+var taskSchema = mongo.Schema({
     	name:        {type: String},
     	description: {type: String},
     	status:      {type: String},
@@ -8,7 +8,7 @@ var Schema = mongo.Schema({
     	               ref: 'Story'}]
 });
 
-Schema.methods.getData = function(){
+taskSchema.methods.getData = function(){
 	return {
 		id:		     this._id,
 	    name:        this.name,
@@ -18,4 +18,4 @@ Schema.methods.getData = function(){
 	};
 };
 
-module.exports = mongo.model('', Schema);
+module.exports = mongo.model('Task', taskSchema);
