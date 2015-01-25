@@ -10,7 +10,8 @@ var sdlSchema = mongo.Schema({
     	diagrams    : [{type: String}],
     	documents   : [{type: String}],
     	iteration   :[{type: mongo.Schema.Types.ObjectId,
-                       ref: 'Iteration'}]
+                       ref: 'Iteration'}],
+    	active      : {type: Boolean, 'default':true}
 });
 
 sdlSchema.methods.getData = function(){
@@ -22,7 +23,8 @@ sdlSchema.methods.getData = function(){
 	    status:      this.status,
 	    vision:      this.vision,
 	    description: this.description,
-	    iteration:   this.iteration
+	    iteration:   this.iteration,
+	    active:      this.active
 	};
 };
 
