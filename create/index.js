@@ -33,16 +33,16 @@ module.exports = function(project, cb){
 			var e = new Date(project.detail.stop);
 		    var span = e.getTime() - s.getTime();
 		    var span_each = span/3;
-			var iter_last = s.getTime;
-			var projectObj = {};
+			var iter_last = s;
+			var projectObj = {iteration:[]};
 			var today = new Date();
 			for(var i = 0; i < 3; i++){
 				var status;
-				var name = 'Sprint ' + numWritten(i);
-				var start = new Date(iter_last + 100);
-				var stop = new Date(start + span_each - 100);
-				iter_last = stop.getTime();
-				if(today.getTime() <= start.getTime()){
+				var name = 'Sprint ' + numWritten(i); 
+				var start = new Date(iter_last.getTime() + 43200000);
+				var stop = new Date(start.getTime() + span_each - 43200000);
+				iter_last = stop;
+				if(today.getTime() >= start.getTime()){
 					status = 'Active';
 				} else {
 					status = 'Pending';
@@ -53,10 +53,14 @@ module.exports = function(project, cb){
 					stop:stop,
 					status:status
 				};
+				var j = 0;
 				Iteration(iteration, function(err, iter){
 					if(err){return cb(err, null);}
-					
-					if(i === 2){
+					projectObj.detail.iteration.push(iter.id);
+					projectObj.iteration.push(iter);
+					j++;
+					if(i == 2){
+						project.detail.iteration = projectObj.detail.iteration;
 						SDL(project.detail, function(err, sdl){
 							if(err){return cb(err, null);}
 							return cb(null, projectObj);

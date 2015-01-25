@@ -5,6 +5,7 @@ module.exports = function(createObj, cb){
     var start       = createObj.start       ? createObj.start       : undefined;
     var stop        = createObj.stop        ? createObj.stop        : undefined;
     var status      = createObj.status      ? createObj.status      : undefined;
+    var vision      = createObj.vision      ? createObj.vision      : undefined;
     var description = createObj.description ? createObj.description : undefined;
     var iteration   = createObj.iteration   ? createObj.iteration   : undefined;
 	
