@@ -2,8 +2,8 @@
 var db = require('./config');
 
 // Get & Post information.
-var get  = require('./get');
-var post = require('./post');
+//var get  = require('./get');
+//var post = require('./post');
 
 // C.R.U.D. functions.
 var C = require('./create');
