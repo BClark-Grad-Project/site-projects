@@ -13,7 +13,7 @@ module.exports = function(search, cb){
 		SDL(search, function(err, detail){
 			if(err){return cb(err, null);}
 			if(detail.id){
-				var projectObj = detail;
+				var projectObj = detail[0];
 				var id = detail[0].id;
 				Iteration({sdl:id, active:true}, function(err, iter){
 					if(err){return cb(err, null);}
