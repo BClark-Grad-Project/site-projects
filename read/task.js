@@ -1,3 +1,13 @@
-/**
- * New node file
- */
+var Task = require('./../models/task');
+
+module.exports = function(Obj, cb){
+	Task.find(Obj)
+		.exec(function(err, results){
+			if(err){return cb(err, null);}
+			
+			for(var i in results){
+				results[i] = results[i].getData();
+			}
+			return cb(null, results);
+		});	
+};
