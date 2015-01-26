@@ -4,8 +4,8 @@ var taskSchema = mongo.Schema({
     	name:        {type: String},
     	description: {type: String},
     	status:      {type: String},
-    	story:       [{type: mongo.Schema.Types.ObjectId,
-    	               ref: 'Story'}],
+    	story:       {type: mongo.Schema.Types.ObjectId,
+    	               ref: 'Iteration'},
        	active:      {type: Boolean, 'default':true}
 });
 

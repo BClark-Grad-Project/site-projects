@@ -5,8 +5,8 @@ var iterationSchema = mongo.Schema({
     	start:   {type: Date},
     	stop:    {type: Date},
     	status:  {type: String},
-    	task:   [{type: mongo.Schema.Types.ObjectId,
-	              ref: 'Task'}],
+    	sdl:     {type: mongo.Schema.Types.ObjectId,
+	              ref: 'SDL'},
 	   	active:  {type: Boolean, 'default':true}
 });
 
@@ -17,7 +17,7 @@ iterationSchema.methods.getData = function(){
 	    start:       this.start,
 	    stop:        this.stop,
 	    status:      this.status,
-	    task:        this.task,
+	    sdl:         this.sdl,
 	    active:      this.active
 	};
 };

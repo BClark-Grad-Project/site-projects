@@ -28,14 +28,15 @@ module.exports.story     = Story;
 
 module.exports = function(project, cb){
 	if(project){
-		if(project.detail){
-			var s = new Date(project.detail.start);
-			var e = new Date(project.detail.stop);
+		var projectObj = {};
+		SDL(project, function(err, detail){
+			var s = new Date(project.start);
+			var e = new Date(project.stop);
 		    var span = e.getTime() - s.getTime();
 		    var span_each = span/3;
 			var iter_last = s;
-			var projectObj = {detail:{iteration:[]},iteration:[]};
 			var today = new Date();
+			projectObj = detail;
 			for(var i = 0; i < 3; i++){
 				var status;
 				var name = 'Sprint ' + numWritten(i); 
@@ -51,29 +52,21 @@ module.exports = function(project, cb){
 					name:name,
 					start:start,
 					stop:stop,
-					status:status
+					status:status,
+					sdl:id
 				};
 				var j = 0;
 				Iteration(iteration, function(err, iter){
 					if(err){return cb(err, null);}
-					if(j !== 3){
-						projectObj.detail.iteration.push(iter.id);
-						projectObj.iteration.push(iter);
-					}
+					if(j !== 3){projectObj.iteration.push(iter);}
 					
 					j++;
-					if(j === 3){
-						project.detail.iteration = projectObj.detail.iteration;
-						SDL(project.detail, function(err, sdl){
-							if(err){return cb(err, null);}
-							return cb(null, projectObj);
-						});
-					}			
+					if(j === 3){						
+						return cb(null, projectObj);	
+					}
 				});
 			}
-		} else {
-			cb('!Not valid object', null);
-		}
+		});
 	} else {
 		cb('!No project object', null);
 	}

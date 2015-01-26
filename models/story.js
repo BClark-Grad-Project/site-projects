@@ -5,6 +5,8 @@ var storySchema = mongo.Schema({
 	description: {type: String},
 	weight:      {type: Number},
 	status:      {type: String},
+	task  :      {type: mongo.Schema.Types.ObjectId,
+                  ref: 'Task'},
 	active:      {type: Boolean, 'default':true}
 });
 

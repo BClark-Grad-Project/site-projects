@@ -8,10 +8,30 @@ module.exports.iteration = Iteration;
 module.exports.task      = Task;
 module.exports.story     = Story;
 
-module.exports = function(project, cb){
-	if(project){
-		
+module.exports = function(search, cb){
+	if(search){
+		SDL(search, function(err, detail){
+			if(err){return cb(err, null);}
+			
+			var id = detail[0].id;
+			Iteration({sdl:id, active:true}, function(err, iter){
+				if(err){return cb(err, null);}
+				
+				projectObj.iteration = iter;
+				Task({sdl:id, active:true}, function(err, task){
+					if(err){return cb(err, null);}
+					
+					projectObj.task = task;
+					Story({sdl:id, active:true}, function(err, stories){
+						if(err){return cb(err, null);}
+						
+						projectObj.stories = stories;
+						return cb(null, projectObj);
+					});
+				});
+			});				
+		});
 	} else {
-		cb('!No project object', null);
+		cb('!No search object', null);
 	}
 };
