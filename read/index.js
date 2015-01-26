@@ -12,27 +12,30 @@ module.exports = function(search, cb){
 	if(search){
 		SDL(search, function(err, detail){
 			if(err){return cb(err, null);}
-			
-			var projectObj = detail;
-			var id = detail[0].id;
-			Iteration({sdl:id, active:true}, function(err, iter){
-				if(err){return cb(err, null);}
-				
-				projectObj.iteration = iter;
-				Task({sdl:id, active:true}, function(err, task){
+			if(detail){
+				var projectObj = detail;
+				var id = detail[0].id;
+				Iteration({sdl:id, active:true}, function(err, iter){
 					if(err){return cb(err, null);}
 					
-					projectObj.task = task;
-					Story({sdl:id, active:true}, function(err, stories){
+					projectObj.iteration = iter;
+					Task({sdl:id, active:true}, function(err, task){
 						if(err){return cb(err, null);}
 						
-						projectObj.stories = stories;
-						return cb(null, projectObj);
+						projectObj.task = task;
+						Story({sdl:id, active:true}, function(err, stories){
+							if(err){return cb(err, null);}
+							
+							projectObj.stories = stories;
+							return cb(null, projectObj);
+						});
 					});
-				});
-			});				
+				});	
+			} else {
+				return cb('!No projects found', null);
+			}
 		});
 	} else {
-		cb('!No search object', null);
+		return cb('!No search object', null);
 	}
 };
