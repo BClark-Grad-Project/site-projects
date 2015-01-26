@@ -53,7 +53,7 @@ module.exports = function(project, cb){
 					start:start,
 					stop:stop,
 					status:status,
-					sdl:id
+					sdl:projectObj.id
 				};
 				var j = 0;
 				Iteration(iteration, function(err, iter){
