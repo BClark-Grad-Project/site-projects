@@ -5,14 +5,14 @@ module.exports = function(createObj, cb){
     var start  = createObj.start  ? createObj.start  : undefined;
     var stop   = createObj.stop   ? createObj.stop   : undefined;
     var status = createObj.status ? createObj.status : undefined;
-    var task   = createObj.task   ? createObj.task   : undefined;
+    var sdl    = createObj.sdl    ? createObj.sdl    : undefined;
 	
     var Obj = new Iteration({
 	    name:        name,
 	    start:       start,
 	    stop:        stop,
 	    status:      status,
-	    task:        task
+	    sdl:         sdl
 	});	
 	
 	Obj.save(function (err) {
