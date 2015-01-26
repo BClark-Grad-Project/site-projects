@@ -7,6 +7,8 @@ var storySchema = mongo.Schema({
 	status:      {type: String},
 	task  :      {type: mongo.Schema.Types.ObjectId,
                   ref: 'Task'},
+    sdl:         {type: mongo.Schema.Types.ObjectId,
+	              ref: 'SDL'},
 	active:      {type: Boolean, 'default':true}
 });
 
@@ -17,6 +19,7 @@ storySchema.methods.getData = function(){
 	    description: this.description,
 	    weight:      this.weight,
 	    status:      this.status,
+	    sdl:         this.sdl,
 	    active:      this.active
 	};
 };
