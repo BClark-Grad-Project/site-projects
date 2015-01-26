@@ -27,9 +27,26 @@ module.exports.task      = Task;
 module.exports.story     = Story;
 
 module.exports = function(project, cb){
-	if(project){
+	if(project.task){
+		var projectObj = {};
+		Task(project.task, function(err, task){
+			if(err){return cb(err, null);}
+			
+			projectObj.task = task;
+			return cb(null, project);
+		});
+	} else if(project.story){
+		var projectObj = {};
+		Story(project.story, function(err, story){
+			if(err){return cb(err, null);}
+			
+			projectObj.story = story;
+			return cb(null, project);
+		});
+	} else if(project){
 		var projectObj = {};
 		SDL(project, function(err, detail){
+			if(err){return cb(err, null);}
 			var s = new Date(project.start);
 			var e = new Date(project.stop);
 		    var span = e.getTime() - s.getTime();
@@ -69,6 +86,6 @@ module.exports = function(project, cb){
 			}
 		});
 	} else {
-		cb('!No project object', null);
+		return cb('!No project object', null);
 	}
 };
