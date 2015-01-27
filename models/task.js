@@ -4,7 +4,7 @@ var taskSchema = mongo.Schema({
     	name:        {type: String},
     	description: {type: String},
     	status:      {type: String},
-    	story:       {type: mongo.Schema.Types.ObjectId,
+    	iteration:   {type: mongo.Schema.Types.ObjectId,
                       ref: 'Iteration'},
         sdl:         {type: mongo.Schema.Types.ObjectId,
 	                  ref: 'SDL'},
@@ -17,7 +17,7 @@ taskSchema.methods.getData = function(){
 	    name:        this.name,
 	    description: this.description,
 	    status:      this.status,
-	    story:       this.story,
+	    iteration:   this.story,
 	    sdl:         this.sdl,
 	    active:      this.active
 	};

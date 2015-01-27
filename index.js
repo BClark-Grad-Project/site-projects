@@ -38,3 +38,29 @@ module.exports.read = function(Obj, cb){
 	});
 };
 
+
+module.exports.update = function(Obj, cb){
+	console.log('site-projects', Obj);
+	db.open();
+	R(Obj, function(err, data){
+	    db.close();
+		if(err){return cb(err, null);}
+    	
+		
+		return cb(null, data);
+	});
+};
+
+module.exports.remove = function(Obj, cb){
+	console.log('site-projects', Obj);
+	db.open();
+	R(Obj, function(err, data){
+	    db.close();
+		if(err){return cb(err, null);}
+    	
+		
+		return cb(null, data);
+	});
+};
+
+
