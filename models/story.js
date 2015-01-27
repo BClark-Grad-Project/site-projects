@@ -19,6 +19,7 @@ storySchema.methods.getData = function(){
 	    description: this.description,
 	    weight:      this.weight,
 	    status:      this.status,
+	    task:        this.task,
 	    sdl:         this.sdl,
 	    active:      this.active
 	};
