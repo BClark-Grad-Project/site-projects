@@ -9,31 +9,32 @@ module.exports.task      = Task;
 module.exports.story     = Story;
 
 module.exports = function(project, cb){
-	console.log('ummm whats happening???', project);
-	if(project.story){
-		Story(project.story, function(err, story){
-			if(err){return cb(err, null);}
-			
-			return cb(null, story);
-		});
-	} else if(project.task){
-		Task(project.task, function(err, task){
-			if(err){return cb(err, null);}
-			
-			return cb(null, task);
-		});
-	} else if(project.iteration){
-		Iteration(project.iteration, function(err, iter){
-			if(err){return cb(err, null);}
-			
-			return cb(null, task);
-		});
-	} else if(project) {
-		SDL(project, function(err, sdl){
-			if(err){return cb(err, null);}
-			
-			return cb(null, project);
-		});
+	if(project){
+		if(project.story){
+			Story(project.story, function(err, story){
+				if(err){return cb(err, null);}
+				
+				return cb(null, story);
+			});
+		} else if(project.task){
+			Task(project.task, function(err, task){
+				if(err){return cb(err, null);}
+				
+				return cb(null, task);
+			});
+		} else if(project.iteration){
+			Iteration(project.iteration, function(err, iter){
+				if(err){return cb(err, null);}
+				
+				return cb(null, task);
+			});
+		} else {
+			SDL(project, function(err, sdl){
+				if(err){return cb(err, null);}
+				
+				return cb(null, project);
+			});
+		}
 	} else {
 		return cb('!No project object', null);
 	}
