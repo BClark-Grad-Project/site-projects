@@ -17,7 +17,7 @@ taskSchema.methods.getData = function(){
 	    name:        this.name,
 	    description: this.description,
 	    status:      this.status,
-	    iteration:   this.story,
+	    iteration:   this.iteration,
 	    sdl:         this.sdl,
 	    active:      this.active
 	};
