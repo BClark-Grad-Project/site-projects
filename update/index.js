@@ -9,7 +9,7 @@ module.exports.task      = Task;
 module.exports.story     = Story;
 
 module.exports = function(project, cb){
-	console.log(project);
+	console.log('ummm whats happening???', project);
 	if(project.story){
 		Story(project.story, function(err, story){
 			if(err){return cb(err, null);}
