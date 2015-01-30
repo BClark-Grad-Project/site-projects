@@ -5,6 +5,7 @@ module.exports = function(createObj, cb){
     var description = createObj.description ? createObj.description : undefined;
     var weight      = createObj.weight      ? createObj.weight      : undefined;
     var sdl         = createObj.sdl         ? createObj.sdl         : undefined;
+    var task        = createObj.task        ? createObj.task        : undefined;
     var status      = createObj.status      ? createObj.status      : 'Pending';
 	
     var Obj = new Story({
@@ -12,7 +13,8 @@ module.exports = function(createObj, cb){
 	    description: description,
 	    weight:      weight,
 	    status:      status,
-	    sdl:         sdl
+	    sdl:         sdl,
+	    task:        task
 	});	
 	
 	Obj.save(function(err) {
