@@ -45,8 +45,8 @@ module.exports = function(project, cb){
 		});
 	} else if(project){
 		var projectObj = {};
-		project.start = project.start.getTime() + 86400000;
-		project.start = project.stop.getTime() + 86400000;
+		project.start = new Date(project.start).getTime() + 86400000;
+		project.start = new Date(project.stop).getTime() + 86400000;
 		
 		if(new Date(project.start) <= new Date()){
 			project.status = 'Active';
