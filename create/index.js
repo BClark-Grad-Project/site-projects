@@ -58,7 +58,6 @@ module.exports = function(project, cb){
 		    var span = e.getTime() - s.getTime();
 		    var span_each = span/3;
 			var iter_last = s;
-			var today = new Date();
 			projectObj = detail;
 			projectObj.iteration = [];
 			for(var i = 0; i < 3; i++){
@@ -67,7 +66,7 @@ module.exports = function(project, cb){
 				var start = new Date(iter_last.getTime());
 				var stop = new Date(start.getTime() + span_each);
 				iter_last = stop;
-				if(today.getTime() <= start.getTime()){
+				if(new Date(project.start) >= new Date()){
 					status = 'Active';
 				}
 				var iteration = {
