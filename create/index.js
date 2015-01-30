@@ -59,6 +59,7 @@ module.exports = function(project, cb){
 			projectObj = detail;
 			projectObj.iteration = [];
 			for(var i = 0; i < 3; i++){
+				var status;
 				var name = 'Sprint ' + numWritten(i); 
 				var start = new Date(iter_last.getTime());
 				var stop = new Date(start.getTime() + span_each);
