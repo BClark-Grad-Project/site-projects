@@ -45,11 +45,12 @@ module.exports = function(project, cb){
 		});
 	} else if(project){
 		var projectObj = {};
+		project.start = project.start.getTime() + 86400000;
+		project.start = project.stop.getTime() + 86400000;
+		
 		if(new Date(project.start) <= new Date()){
 			project.status = 'Active';
 		}
-		//project.start = project.start.getTime() + 86400000;
-		//project.start = project.stop.getTime() + 86400000;
 		SDL(project, function(err, detail){
 			if(err){return cb(err, null);}
 			var s = new Date(project.start);
@@ -63,8 +64,8 @@ module.exports = function(project, cb){
 			for(var i = 0; i < 3; i++){
 				var status;
 				var name = 'Sprint ' + numWritten(i); 
-				var start = new Date(iter_last.getTime() + 86400000);
-				var stop = new Date(start.getTime() + span_each + 86400000);
+				var start = new Date(iter_last.getTime());
+				var stop = new Date(start.getTime() + span_each);
 				iter_last = stop;
 				if(today.getTime() >= start.getTime()){
 					status = 'Active';
