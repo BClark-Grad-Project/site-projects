@@ -45,13 +45,13 @@ module.exports = function(project, cb){
 		});
 	} else if(project){
 		var projectObj = {};
-		if(new Date(project.start) >= new Date()){
+		if(new Date(project.start) <= new Date()){
 			project.status = 'Active';
 		}
 		SDL(project, function(err, detail){
 			if(err){return cb(err, null);}
-			var s = new Date(project.start);
-			var e = new Date(project.stop);
+			var s = new Date(project.start + 86400000);
+			var e = new Date(project.stop + 86400000);
 		    var span = e.getTime() - s.getTime();
 		    var span_each = span/3;
 			var iter_last = s;
