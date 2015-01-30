@@ -26,7 +26,7 @@ module.exports = function(project, cb){
 			Iteration(project.iteration, function(err, iter){
 				if(err){return cb(err, null);}
 				
-				return cb(null, task);
+				return cb(null, iter);
 			});
 		} else {
 			SDL(project, function(err, sdl){
