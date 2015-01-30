@@ -4,7 +4,7 @@ var sdlSchema = mongo.Schema({
     	name        : {type: String},
     	start       : {type: Date},
     	stop        : {type: Date},
-    	status      : {type: String},
+    	status      : {type: String, 'default':'Pending'},
     	vision      : {type: String},
     	description : {type: String},
     	diagrams    : [{type: String}],

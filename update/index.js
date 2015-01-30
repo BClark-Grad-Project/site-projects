@@ -39,3 +39,19 @@ module.exports = function(project, cb){
 		return cb('!No project object', null);
 	}
 };
+
+module.exports.updateStatus = function(project, cb){
+	if(project){
+		if(project.iteration){
+			
+		} else if(project.task){
+			
+		} else if(project.story){
+			
+		} else {
+			
+		}
+	} else {
+		return cb('!No project object', null);
+	}
+};

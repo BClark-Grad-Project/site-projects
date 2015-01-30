@@ -39,3 +39,8 @@ module.exports = function(search, cb){
 		return cb('!No search object', null);
 	}
 };
+
+
+module.exports.checkStatus = function(cb){
+		return cb('!No status info', null);
+};
