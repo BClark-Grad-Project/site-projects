@@ -45,7 +45,7 @@ module.exports = function(project, cb){
 		});
 	} else if(project){
 		var projectObj = {};
-		if(project.start.getTime() >= new Date()){
+		if(new Date(project.start) >= new Date()){
 			project.status = 'Active';
 		}
 		SDL(project, function(err, detail){
