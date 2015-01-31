@@ -3,23 +3,21 @@ var Iteration = require('./iteration');
 var Task = require('./task');
 var Story = require('./story');
 
-var iterationStatus = function(iteration, value){
+var iterationStatus = function(iteration){
 	for(var i in iteration){
-		Iteration({id:iteration[i].id, status:value},function(err, data){});
+		Iteration({id:iteration[i].id, status:iteration[i].status},function(err, data){});
 	}
-	if(err){return cb(err, null);}
-	return cb(null, 'Success');
 };
 
-var taskStatus = function(task, value){
+var taskStatus = function(task){
 	for(var i in task){
-		Task({id:task[i].id, status:value},function(err, data){});
+		Task({id:task[i].id, status:task[i].status},function(err, data){});
 	}
 };
 
-var storyStatus = function(stories, value){
+var storyStatus = function(stories){
 	for(var i in iteration){
-		Story({id:stories[i].id, status:value},function(err, data){});
+		Story({id:stories[i].id, status:stories[i].status},function(err, data){});
 	}
 };
 
@@ -60,16 +58,17 @@ module.exports = function(project, cb){
 	}
 };
 
-module.exports.updateStatus = function(project, value){
+module.exports.updateStatus = function(project){
 	if(project){
 		if(project.iteration){
-			iterationStatus(project.iteration, value);
-		} else if(project.task){
-			taskStatus(project.task, value);
-		} else if(project.stories){
-			storyStatus(project.stories, value);
-		} else {
-			Project({id:project.id, status:value},function(err, data){});
+			iterationStatus(project.iteration);
 		}
+		if(project.task){
+			taskStatus(project.task);
+		}
+		if(project.stories){
+			storyStatus(project.stories);
+		}
+		Project({id:project.id, status:project.status},function(err, data){});
 	} 
 };

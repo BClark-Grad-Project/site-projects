@@ -66,7 +66,6 @@ module.exports = function(project, cb){
 				var start = new Date(iter_last.getTime());
 				var stop = new Date(start.getTime() + span_each);
 				iter_last = stop;
-				console.log(name, start, stop, start.getTime(), new Date().getTime(), start.getTime() <= new Date().getTime());
 				if(start.getTime() <= new Date().getTime()){
 					status = 'Active';
 				}
