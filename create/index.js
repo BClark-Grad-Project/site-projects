@@ -48,7 +48,7 @@ module.exports = function(project, cb){
 		project.start = new Date(project.start).getTime() + 86400000;
 		project.stop = new Date(project.stop).getTime() + 86400000;
 		
-		if(new Date(project.start) >= new Date()){
+		if(new Date(project.start).getTime() <= new Date().getTime()){
 			project.status = 'Active';
 		}
 		SDL(project, function(err, detail){
@@ -58,15 +58,17 @@ module.exports = function(project, cb){
 		    var span = e.getTime() - s.getTime();
 		    var span_each = span/3;
 			var iter_last = s;
+			var today = new Date();
 			projectObj = detail;
 			projectObj.iteration = [];
 			for(var i = 0; i < 3; i++){
-				var status;
+				var status = '';
 				var name = 'Sprint ' + numWritten(i); 
 				var start = new Date(iter_last.getTime());
 				var stop = new Date(start.getTime() + span_each);
 				iter_last = stop;
-				if(new Date(project.start) >= new Date()){
+				console.log(name, start, stop, start.getTime(), new Date().getTime(), start.getTime() <= new Date().getTime());
+				if(start.getTime() <= new Date().getTime()){
 					status = 'Active';
 				}
 				var iteration = {
