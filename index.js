@@ -61,7 +61,7 @@ var updateCheck = function(){
 			}
 		}
 		if(projectObj){
-			U.updateStatus(projectObj, value);
+			U.updateStatus(projectObj);
 		}
 	});
 };
