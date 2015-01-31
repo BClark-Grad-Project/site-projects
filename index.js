@@ -12,7 +12,6 @@ var U = require('./update');
 var D = require('./delete');
 
 var updateCheck = function(){
-	var value = '';
 	var projectObj = {};
 	R({active:true}, function(err, project){
 		if(err){return -1;}
@@ -39,15 +38,13 @@ var updateCheck = function(){
 							projectObj.iteration.push(project.iteration[i]);
 							projectObj.iteration[i].status = 'Active';
 						}
-					} else if(new Date(project.iteration[i].stop).getTime() <= new Date().getTime()){
-						
+					} else {
+						if(projectObj.iteration[i].status != 'Complete'){
+							projectObj.iteration.push(project.iteration[i]);
+							projectObj.iteration[i].status = 'Complete';
+						}							
 					}
-				} else {
-					if(projectObj.iteration[i].status != 'Complete'){
-						projectObj.iteration.push(project.iteration[i]);
-						projectObj.iteration[i].status = 'Complete';
-					}				
-				}
+				} 
 			}
 		}
 		if(project.task){
