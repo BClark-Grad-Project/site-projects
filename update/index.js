@@ -69,6 +69,6 @@ module.exports.updateStatus = function(project){
 		if(project.stories){
 			storyStatus(project.stories);
 		}
-		Project({id:project.id, status:project.status},function(err, data){});
+		SDL({id:project.id, status:project.status},function(err, data){});
 	} 
 };
