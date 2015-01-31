@@ -11,6 +11,41 @@ var R = require('./read');
 var U = require('./update');
 var D = require('./delete');
 
+
+var updateTaskCards = function(Obj, Comm){
+	var task = [];
+	for(var i in Comm){
+		for(var j in Obj){
+			if(Comm[i].id.toString() == Obj[j].iteration.toString()){
+				if(Comm[i].status === 'Active'){
+					if(Obj[i] === 'Pending'){
+						obj[i].status = 'Active';
+						task.push.Obj[i];
+					}
+				}
+			}
+		}
+	}
+	return task;
+};
+
+var updateStoryCards = function(Obj, Comm){
+	var stories = [];
+	for(var i in Comm){
+		for(var j in Obj){
+			if(Comm[i].id.toString() == Obj[j].task.toString()){
+				if(Comm[i].status === 'Active'){
+					if(Obj[i] === 'Pending'){
+						obj[i].status = 'Active';
+						stories.push.Obj[i];
+					}
+				}
+			}
+		}
+	}
+	return stories;
+};
+
 var updateCheck = function(){
 	R({active:true}, function(err, project){
 	  var projectObj = {};
@@ -80,18 +115,15 @@ var updateCheck = function(){
 			  }	
 			} 
 		}
-		if(project.task){
-			for(var i in project.task){
-				
+		if(projectObj.iteration){
+			if(project.task){
+				projectObj.task = updateTaskCards(project.task, projectObj.iteration);
 			}
 		}
-		if(project.stories){
-			for(var i in project.stories){
-				
+		if(projectObj.iteration){
+			if(project.stories){
+				projectObj.stories = updateStoryCards(project.stories);
 			}
-		}
-		if(projectObj){
-			U.updateStatus(projectObj);
 		}
 	});
 };
