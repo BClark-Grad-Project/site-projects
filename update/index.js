@@ -3,6 +3,26 @@ var Iteration = require('./iteration');
 var Task = require('./task');
 var Story = require('./story');
 
+var iterationStatus = function(iteration, value){
+	for(var i in iteration){
+		Iteration({id:iteration[i].id, status:value},function(err, data){});
+	}
+	if(err){return cb(err, null);}
+	return cb(null, 'Success');
+};
+
+var taskStatus = function(task, value){
+	for(var i in task){
+		Task({id:task[i].id, status:value},function(err, data){});
+	}
+};
+
+var storyStatus = function(stories, value){
+	for(var i in iteration){
+		Story({id:stories[i].id, status:value},function(err, data){});
+	}
+};
+
 module.exports.sdl       = SDL;
 module.exports.iteration = Iteration;
 module.exports.task      = Task;
@@ -40,18 +60,16 @@ module.exports = function(project, cb){
 	}
 };
 
-module.exports.updateStatus = function(project, cb){
+module.exports.updateStatus = function(project, value){
 	if(project){
 		if(project.iteration){
-			
+			iterationStatus(project.iteration, value);
 		} else if(project.task){
-			
-		} else if(project.story){
-			
+			taskStatus(project.task, value);
+		} else if(project.stories){
+			storyStatus(project.stories, value);
 		} else {
-			
+			Project({id:project.id, status:value},function(err, data){});
 		}
-	} else {
-		return cb('!No project object', null);
-	}
+	} 
 };

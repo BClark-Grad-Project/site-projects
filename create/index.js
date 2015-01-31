@@ -58,7 +58,6 @@ module.exports = function(project, cb){
 		    var span = e.getTime() - s.getTime();
 		    var span_each = span/3;
 			var iter_last = s;
-			var today = new Date();
 			projectObj = detail;
 			projectObj.iteration = [];
 			for(var i = 0; i < 3; i++){
