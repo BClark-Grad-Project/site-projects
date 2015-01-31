@@ -16,7 +16,7 @@ var taskStatus = function(task){
 };
 
 var storyStatus = function(stories){
-	for(var i in iteration){
+	for(var i in stories){
 		Story({id:stories[i].id, status:stories[i].status},function(err, data){});
 	}
 };
