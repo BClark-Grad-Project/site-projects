@@ -48,7 +48,7 @@ var updateStoryCards = function(Obj, Comm){
 
 var updateCheck = function(){
 	R({active:true}, function(err, project){
-	  var projectObj = {};
+	  var projectObj = {iteration:[],task:[],stories:[]};
 		if(err){return -1;}
 		if(new Date(project.start).getTime() <= new Date().getTime()){
 			projectObj.id = project.id;
