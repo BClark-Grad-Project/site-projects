@@ -68,39 +68,29 @@ var updateCheck = function(){
 				}
 			}
 			
-			projectObj.iteration = [];
-			projectObj.task = [];
-			projectObj.stories = [];
-			console.log(project, projectObj);
 		} 
 		if(project.iteration){
 			for(var i in project.iteration){
-				console.log(project.iteration[i].name, 'iteration status check');
 			  if(new Date(project.iteration[i].start).getTime() <= new Date().getTime()){
-				  console.log(project.iteration[i].name, 'past start');
 			    if(new Date(project.iteration[i].stop).getTime() >= new Date().getTime()){
-						if(project.iteration[i].status === 'Complete'){
-  				    console.log(project.iteration[i].name, 'make Active');
-							project.iteration[i].status = 'Active';
-							projectObj.iteration.push(project.iteration[i]);
-						}
-						if(project.iteration[i].status === 'Pending'){
-  				    console.log(project.iteration[i].name, 'make Active');
-							project.iteration[i].status = 'Active';
-							projectObj.iteration.push(project.iteration[i]);
-						}
-					} else {
-						if(project.iteration[i].status === 'Pending'){
-  				    console.log(project.iteration[i].name, 'make Complete');
-							project.iteration[i].status = 'Complete';
-							projectObj.iteration.push(project.iteration[i]);
-						}							
-						if(project.iteration[i].status === 'Active'){
-  				    console.log(project.iteration[i].name, 'make Complete');
-							project.iteration[i].status = 'Complete';
-							projectObj.iteration.push(project.iteration[i]);
-						}
-				  }							
+					if(project.iteration[i].status === 'Complete'){
+						project.iteration[i].status = 'Active';
+						projectObj.iteration.push(project.iteration[i]);
+					}
+					if(project.iteration[i].status === 'Pending'){
+						project.iteration[i].status = 'Active';
+						projectObj.iteration.push(project.iteration[i]);
+					}
+				} else {
+					if(project.iteration[i].status === 'Pending'){
+						project.iteration[i].status = 'Complete';
+						projectObj.iteration.push(project.iteration[i]);
+					}							
+					if(project.iteration[i].status === 'Active'){
+						project.iteration[i].status = 'Complete';
+						projectObj.iteration.push(project.iteration[i]);
+					}
+				}							
 			  } else {					  
 			    if(project.iteration[i].status === 'Active'){
 		        console.log(project.iteration[i].name, 'make Pending');
@@ -115,15 +105,11 @@ var updateCheck = function(){
 			  }	
 			} 
 		}
-		if(projectObj.iteration){
-			if(project.task){
-				projectObj.task = updateTaskCards(project.task, projectObj.iteration);
-			}
+		if(project.task){
+			projectObj.task = updateTaskCards(project.task, projectObj.iteration);
 		}
-		if(projectObj.iteration){
-			if(project.stories){
-				projectObj.stories = updateStoryCards(project.stories);
-			}
+		if(project.stories){
+			projectObj.stories = updateStoryCards(project.stories, projectObj.task);
 		}
 	});
 };
