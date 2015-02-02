@@ -41,6 +41,10 @@ module.exports = function(search, cb){
 };
 
 
-module.exports.checkStatus = function(cb){
-		return cb('!No status info', null);
+module.exports.getTaskStories = function(id, cb){
+	Story({task:id, active:true}, function(err, stories){
+		if(err){return cb(err, null);}
+		
+		return cb(null, stories);
+	});
 };
