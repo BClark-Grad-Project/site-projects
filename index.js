@@ -173,7 +173,7 @@ module.exports.create = function(Obj, cb){
 
 module.exports.read = function(Obj, cb){
 	console.log('site-projects', Obj);
-	updateCheck();
+	//updateCheck();
 	R(Obj, function(err, data){
 		if(err){return cb(err, null);}    	
 		
