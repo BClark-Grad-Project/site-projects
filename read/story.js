@@ -1,4 +1,4 @@
-var Story = require('./../models/story');
+var Story = require('./../config').story;
 
 module.exports = function(Obj, cb){
 	Story

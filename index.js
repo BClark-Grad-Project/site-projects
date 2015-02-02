@@ -11,7 +11,6 @@ var R = require('./read');
 var U = require('./update');
 var D = require('./delete');
 
-
 var updateTaskCards = function(Obj, Comm){
 	var task = [];
 	for(var j in Obj){
@@ -165,11 +164,8 @@ var updateCheck = function(){
 
 module.exports.create = function(Obj, cb){
 	console.log('site-projects', Obj);
-	db.open();
 	C(Obj, function(err, data){
-	    db.close();
-		if(err){return cb(err, null);}
-    	
+		if(err){return cb(err, null);}    	
 		
 		return cb(null, data);
 	});
@@ -177,12 +173,9 @@ module.exports.create = function(Obj, cb){
 
 module.exports.read = function(Obj, cb){
 	console.log('site-projects', Obj);
-	db.open();
 	updateCheck();
 	R(Obj, function(err, data){
-	    db.close();
-		if(err){return cb(err, null);}
-    	
+		if(err){return cb(err, null);}    	
 		
 		return cb(null, data);
 	});
@@ -191,34 +184,26 @@ module.exports.read = function(Obj, cb){
 
 module.exports.update = function(Obj, cb){
 	console.log('site-projects', Obj);
-	db.open();
-
 	if(Obj.task){
-	if(Obj.task.iteration){
-	  checkTaskStories(Obj.task, function(err, stories){	    
-	    U(Obj, function(err, data){
-	      db.close();
-		    if(err){return cb(err, null);}
-        	
-		
-		    return cb(null, data);
-	    });
-	  });
-	} else {
-	    U(Obj, function(err, data){
-		      db.close();
-			    if(err){return cb(err, null);}
-	        	
+		if(Obj.task.iteration){
+		  checkTaskStories(Obj.task, function(err, stories){	    
+		    U(Obj, function(err, data){
+			    if(err){return cb(err, null);}	        	
 			
 			    return cb(null, data);
-		});
-	}
+		    });
+		  });
+		} else {
+		    U(Obj, function(err, data){
+				    if(err){return cb(err, null);}
+		        					
+				    return cb(null, data);
+			});
+		}
 	} else {
 	  U(Obj, function(err, data){
-	    db.close();
 		  if(err){return cb(err, null);}
-      	
-		
+      			
 		  return cb(null, data);
 	  });
 	}
@@ -226,9 +211,7 @@ module.exports.update = function(Obj, cb){
 
 module.exports.remove = function(Obj, cb){
 	console.log('site-projects', Obj);
-	db.open();
 	D(Obj, function(err, data){
-	    db.close();
 		if(err){return cb(err, null);}
     	
 		

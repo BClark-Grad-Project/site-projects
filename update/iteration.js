@@ -1,10 +1,10 @@
-var UserContact = require('./../models/iteration');
+var Iteration = require('./../config').iteration;
 
 module.exports = function(updateData, cb){
 	var id = updateData.id;
 	delete updateData.id;
 	
-	UserContact.findOneAndUpdate({_id:id}, updateData, {}, function(err, result){
+	Iteration.findOneAndUpdate({_id:id}, updateData, {}, function(err, result){
 		if(err){return cb(err, null);}
 		
 		return cb(null, result.getData());

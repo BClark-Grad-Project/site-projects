@@ -1,4 +1,4 @@
-var SDL = require('./../models/sdl');
+var SDL = require('./../config').sdl;
 
 module.exports = function(createObj, cb){
     var name        = createObj.name        ? createObj.name        : undefined;

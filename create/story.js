@@ -1,4 +1,4 @@
-var Story = require('./../models/story');
+var Story = require('./../config').story;
 
 module.exports = function(createObj, cb){
     var name        = createObj.name        ? createObj.name        : undefined;

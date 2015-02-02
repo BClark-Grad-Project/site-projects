@@ -1,4 +1,4 @@
-var SDL = require('./../models/sdl');
+var SDL = require('./../config').sdl;
 
 module.exports = function(Obj, cb){
 	SDL.find(Obj)

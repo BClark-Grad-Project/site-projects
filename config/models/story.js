@@ -25,4 +25,4 @@ storySchema.methods.getData = function(){
 	};
 };
 
-module.exports = mongo.model('Story', storySchema);
+module.exports = storySchema;

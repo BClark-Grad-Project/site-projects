@@ -23,4 +23,4 @@ taskSchema.methods.getData = function(){
 	};
 };
 
-module.exports = mongo.model('Task', taskSchema);
+module.exports = taskSchema;

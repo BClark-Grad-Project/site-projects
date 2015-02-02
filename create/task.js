@@ -1,4 +1,4 @@
-var Task = require('./../models/task');
+var Task = require('./../config').task;
 
 module.exports = function(createObj, cb){
     var name        = createObj.name        ? createObj.name        : undefined;

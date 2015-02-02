@@ -1,10 +1,10 @@
-var UserContact = require('./../models/sdl');
+var SDL = require('./../config').sdl;
 
 module.exports = function(updateData, cb){
 	var id = updateData.id;
 	delete updateData.id;
 	
-	UserContact.findOneAndUpdate({_id:id}, updateData, {}, function(err, result){
+	SDL.findOneAndUpdate({_id:id}, updateData, {}, function(err, result){
 		if(err){return cb(err, null);}
 		
 		return cb(null, result.getData());

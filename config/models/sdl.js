@@ -25,4 +25,4 @@ sdlSchema.methods.getData = function(){
 	};
 };
 
-module.exports = mongo.model('SDL', sdlSchema);
+module.exports = sdlSchema;

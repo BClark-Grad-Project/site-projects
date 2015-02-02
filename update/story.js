@@ -1,10 +1,10 @@
-var UserContact = require('./../models/story');
+var Story = require('./../config').story;
 
 module.exports = function(updateData, cb){
 	var id = updateData.id;
 	delete updateData.id;
 	
-	UserContact.findOneAndUpdate({_id:id}, updateData, {}, function(err, result){
+	Story.findOneAndUpdate({_id:id}, updateData, {}, function(err, result){
 		if(err){return cb(err, null);}
 		
 		return cb(null, result.getData());

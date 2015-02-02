@@ -1,5 +1,10 @@
 var mongo = require('mongoose');
 var config = require('./conf');
+var SDL = require('./models/sdl');
+var Iteration = require('./models/iteration');
+var Task = require('./models/task');
+var Story = require('./models/story');
+var conn = {};
 
 var mongoMessage = function(){
 	var db = mongo.connection;
@@ -17,12 +22,15 @@ var dbConnection = function(){
 	return url;
 };
 
-module.exports.open = function(){
-	var url = dbConnection();
-	mongo.connect(url);	
-	mongoMessage();
-};
 
 module.exports.close = function(){
 	return mongo.disconnect();
 };
+
+var url = dbConnection();
+conn = mongo.createConnection(url);	
+mongoMessage();
+module.exports.sdl = conn.model('SDL', SDL);
+module.exports.iteration = conn.model('Iteration', Iteration);
+module.exports.task = conn.model('Task', Task);
+module.exports.story = conn.model('Story', Story);

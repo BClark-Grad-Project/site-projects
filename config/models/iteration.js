@@ -24,4 +24,4 @@ iterationSchema.methods.getData = function(){
 	};
 };
 
-module.exports = mongo.model('Iteration', iterationSchema);
+module.exports = iterationSchema;

@@ -1,4 +1,4 @@
-var UserContact = require('./../models/task');
+var Task = require('./../config').task;
 
 module.exports = function(updateData, cb){
 	var id = updateData.id;

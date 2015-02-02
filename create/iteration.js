@@ -1,4 +1,4 @@
-var Iteration = require('./../models/iteration');
+var Iteration = require('./../config').iteration;
 
 module.exports = function(createObj, cb){
     var name    = createObj.name    ? createObj.name    : undefined;
