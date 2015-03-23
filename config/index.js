@@ -18,10 +18,9 @@ var mongoMessage = function(){
 };
 
 var dbConnection = function(){
-	var url = 'mongodb://' + config.host + ':' + config.port + '/' + config.db;
+	var url = 'mongodb://' + config.mongo_host + ':' + config.mongo_port + '/' + config.db;
 	return url;
 };
-
 
 module.exports.close = function(){
 	return mongo.disconnect();
